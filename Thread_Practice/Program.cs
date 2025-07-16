@@ -112,8 +112,8 @@
 // 7. Thread_vs_Task
 //
 
-var threadVsTask = new Thread_vs_Task();
-await threadVsTask.RunWithTasks();
+//var threadVsTask = new Thread_vs_Task();
+//await threadVsTask.RunWithTasks();
 //threadVsTask.RunWithThreads();
 
 //
@@ -121,7 +121,6 @@ await threadVsTask.RunWithTasks();
 //
 
 await Sync_practice.Start();
-
 
 static async Task AsyncExample()
 {
