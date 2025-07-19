@@ -16,7 +16,7 @@ internal class SharedCounter
         bool lockTaken = false;
         try
         {
-            Monitor. Enter(_lock, ref lockTaken);
+            Monitor.Enter(_lock, ref lockTaken);
             _count++;
         }
         finally

@@ -120,7 +120,12 @@
 // 8. Thread synchronization primitives
 //
 
-await Sync_practice.Start();
+//await Sync_practice.Start();
+
+//
+// 9. FileStream vs File
+//
+FileComparison.Run();
 
 static async Task AsyncExample()
 {

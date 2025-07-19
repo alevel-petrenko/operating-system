@@ -9,35 +9,48 @@ public class Sync_practice
     public static async Task Start()
     {
         var counter = new SharedCounter();
+        var timer = new System.Diagnostics.Stopwatch();
 
         Console.WriteLine("--- lock ---");
+        timer.Start();
         await RunParallel(() => counter.IncrementWithLock());
-        Console.WriteLine($"Counter: {counter.Count}\n");
+        timer.Stop();
+        Console.WriteLine($"Counter: {counter.Count}. {FormatTime(timer.Elapsed)}\n");
 
         Console.WriteLine("--- Monitor ---");
         counter = new SharedCounter();
+        timer.Restart();
         await RunParallel(() => counter.IncrementWithMonitor());
-        Console.WriteLine($"Counter: {counter.Count}\n");
+        timer.Stop();
+        Console.WriteLine($"Counter: {counter.Count}. {FormatTime(timer.Elapsed)}\n");
 
         Console.WriteLine("--- Interlocked ---");
         counter = new SharedCounter();
+        timer.Restart();
         await RunParallel(() => counter.IncrementWithInterlocked());
-        Console.WriteLine($"Counter: {counter.Count}\n");
+        timer.Stop();
+        Console.WriteLine($"Counter: {counter.Count}. {FormatTime(timer.Elapsed)}\n");
 
         Console.WriteLine("--- Mutex ---");
         counter = new SharedCounter();
+        timer.Restart();
         await RunParallel(() =>
         {
             mutex.WaitOne();
             counter.IncrementWithLock();
             mutex.ReleaseMutex();
         });
-        Console.WriteLine($"Counter: {counter.Count}\n");
+        timer.Stop();
+        Console.WriteLine($"Counter: {counter.Count}. {FormatTime(timer.Elapsed)}\n");
 
         Console.WriteLine("--- Semaphore ---");
+        timer.Restart();
         await RunWithSemaphore();
+        timer.Stop();
+        Console.WriteLine($"--- Semaphore END {FormatTime(timer.Elapsed)} ---\n");
 
         Console.WriteLine("--- AutoResetEvent ---");
+        timer.Restart();
         Thread t = new(() =>
         {
             Console.WriteLine("[Worker] Waiting for signal...");
@@ -48,6 +61,8 @@ public class Sync_practice
         Thread.Sleep(1000);
         signal.Set();
         t.Join();
+        timer.Stop();
+        Console.WriteLine($"--- AutoResetEvent END {FormatTime(timer.Elapsed)} ---\n");
     }
 
     static async Task RunParallel(Action action)
@@ -84,4 +99,7 @@ public class Sync_practice
         }
         await Task.WhenAll(tasks);
     }
+
+    private static string FormatTime(TimeSpan time) =>
+        $"Time: {time.Minutes}m {time.Seconds}s {time.Milliseconds}ms {time.Nanoseconds}ns";
 }
