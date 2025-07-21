@@ -125,7 +125,15 @@
 //
 // 9. FileStream vs File
 //
-FileComparison.Run();
+//FileComparison.Run();
+
+var types = new Value_Ref_Types();
+types.Start();
+
+//var custom = new CustomEnumerable<char>(['A', 'B', 'C', 'D']);
+//foreach (var item in custom)
+//    Console.WriteLine(item);
+
 
 static async Task AsyncExample()
 {
