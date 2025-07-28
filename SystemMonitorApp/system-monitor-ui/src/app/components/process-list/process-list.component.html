@@ -1,7 +1,10 @@
 <h3>All processes:</h3>
 <div>
-    {{ processes }}
-    <!-- <li *ngFor="let process of processes">
-        {{ process.name }} (ID: {{ process.id }})
-    </li> -->
+    <ul>
+        @for(process of processes; track process.id) {
+        <li>
+            {{ process.name }} (ID: {{ process.id }})
+        </li>
+        }
+    </ul>
 </div>

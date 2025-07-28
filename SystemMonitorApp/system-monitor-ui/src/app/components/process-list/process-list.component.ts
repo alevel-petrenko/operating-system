@@ -9,7 +9,7 @@ import { ProcessInfo, ProcessService } from '../../services/process.service';
   styleUrl: './process-list.component.css'
 })
 export class ProcessListComponent implements OnInit {
-  public processes!: ProcessInfo;
+  public processes: ProcessInfo[] = [];
   constructor(private processService: ProcessService) { }
 
   ngOnInit(): void {

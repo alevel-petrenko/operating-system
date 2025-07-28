@@ -13,11 +13,11 @@ export interface ProcessInfo {
   providedIn: 'root'
 })
 export class ProcessService {
-  private readonly apiUrl = 'http://localhost:5147/api/process';
+  private readonly apiUrl = 'http://localhost:15708/api/process';
   
   constructor(private http: HttpClient) { }
 
-  getProcesses() : Observable<ProcessInfo> { // 😉
-    return this.http.get<ProcessInfo>(this.apiUrl);
+  getProcesses() : Observable<ProcessInfo[]> {
+    return this.http.get<ProcessInfo[]>(this.apiUrl);
   }
 }
