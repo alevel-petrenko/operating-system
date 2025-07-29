@@ -7,7 +7,7 @@ namespace SystemMonitor.Api.Controllers;
 [Route("api/[controller]")]
 public class ProcessController(IProcessService processService) : ControllerBase
 {
-    [HttpGet]
+    [HttpGet("all")]
     public IEnumerable<ProcessInfo> GetActiveProcesses()
     {
         return processService.GetActiveProcesses();

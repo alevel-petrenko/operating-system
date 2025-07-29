@@ -1,10 +1,10 @@
-<h3>All processes:</h3>
+<h4 class="margin-2">All processes on {{ computerName }}:</h4>
 <div>
-    <ul>
+    <ol class="process-grid">
         @for(process of processes; track process.id) {
         <li>
-            {{ process.name }} (ID: {{ process.id }})
+            <app-process-card [process]="process" />
         </li>
         }
-    </ul>
+    </ol>
 </div>

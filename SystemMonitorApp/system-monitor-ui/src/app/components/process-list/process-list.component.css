@@ -1,0 +1,15 @@
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(300px, 1fr));
+  gap: 16px;
+  padding: 0;
+  list-style-type: none;
+}
+
+.margin-2 {
+  margin: 2rem;
+}
+
+.margin-y-2 {
+  margin: 2rem 0;
+}

@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { DataApiService } from '../data-api.service';
 
 export interface ProcessInfo {
   id: number;
@@ -13,11 +13,9 @@ export interface ProcessInfo {
   providedIn: 'root'
 })
 export class ProcessService {
-  private readonly apiUrl = 'http://localhost:15708/api/process';
-  
-  constructor(private http: HttpClient) { }
+  constructor(private api: DataApiService) { }
 
-  getProcesses() : Observable<ProcessInfo[]> {
-    return this.http.get<ProcessInfo[]>(this.apiUrl);
+  getProcesses(): Observable<ProcessInfo[]> {
+    return this.api.get<ProcessInfo[]>('process/all'); ;
   }
 }
