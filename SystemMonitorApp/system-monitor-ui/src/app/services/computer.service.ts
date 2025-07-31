@@ -3,6 +3,10 @@ import { DataApiService } from '../data-api.service';
 import { Observable } from 'rxjs';
 import { withCache } from '@ngneat/cashew';
 
+export interface ComputerInfo {
+  name: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,8 +14,8 @@ export class ComputerService {
 
   constructor(private apiService: DataApiService) { }
 
-  public getComputerName(): Observable<string> {
-    return this.apiService.get<string>('computer/name',
-      withCache({ ttl: 60000 }));
+  public getComputerName(): Observable<ComputerInfo> {
+    return this.apiService.get<ComputerInfo>('computer/name')
+      // withCache({ ttl: 60000 }));
   }
 }

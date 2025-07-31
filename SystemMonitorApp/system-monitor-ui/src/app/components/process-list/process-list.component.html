@@ -1,7 +1,7 @@
-<h4 class="margin-2">All processes on {{ computerName }}:</h4>
+<h4 class="margin-2">All processes on {{ (computerName$ | async)?.name }}:</h4>
 <div>
     <ol class="process-grid">
-        @for(process of processes; track process.id) {
+        @for(process of processes$ | async; track process.id) {
         <li>
             <app-process-card [process]="process" />
         </li>

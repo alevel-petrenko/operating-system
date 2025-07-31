@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SystemMonitor.Api.Models;
 
 namespace SystemMonitor.Api.Controllers;
 
@@ -6,5 +7,5 @@ namespace SystemMonitor.Api.Controllers;
 public class ComputerController : ControllerBase
 {
     [HttpGet("name")]
-    public string GetComputerName() => Environment.MachineName;
+    public IActionResult GetComputerName() => Ok(new ComputerInfo { Name = Environment.MachineName });
 }
