@@ -1,9 +1,16 @@
 .process-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(300px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(4, minmax(300px, 1fr));
+  margin: 2rem;
   padding: 0;
   list-style-type: none;
+  max-height: 90vh;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .margin-2 {

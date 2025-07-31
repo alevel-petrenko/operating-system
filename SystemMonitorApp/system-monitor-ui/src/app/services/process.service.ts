@@ -15,7 +15,7 @@ export interface ProcessInfo {
 export class ProcessService {
   constructor(private api: DataApiService) { }
 
-  getProcesses(): Observable<ProcessInfo[]> {
+  public getProcesses(): Observable<ProcessInfo[]> {
     return this.api.get<ProcessInfo[]>('process/all'); ;
   }
 }

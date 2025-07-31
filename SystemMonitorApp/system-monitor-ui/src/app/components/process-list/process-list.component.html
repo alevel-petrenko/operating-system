@@ -1,10 +1,18 @@
 <h4 class="margin-2">All processes on {{ (computerName$ | async)?.name }}:</h4>
 <div>
-    <ol class="process-grid">
-        @for(process of processes$ | async; track process.id) {
-        <li>
-            <app-process-card [process]="process" />
-        </li>
-        }
-    </ol>
+    <div>
+        <ol class="process-grid">
+            @for(process of paginatedProcesses$ | async; track process.id) {
+            <li>
+                <app-process-card [process]="process" />
+            </li>
+            }
+        </ol>
+    </div>
+
+    <div class="pagination-container">
+        <button (click)="currentPage = currentPage - 1" [disabled]="currentPage === 1">←</button>
+        <span class="margin-2">Page {{ currentPage }} of {{ totalPages$ | async }}</span>
+        <button (click)="currentPage = currentPage + 1" [disabled]="(totalPages$ | async) === currentPage">→</button>
+    </div>
 </div>
