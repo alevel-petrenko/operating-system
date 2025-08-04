@@ -1,22 +1,30 @@
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.process-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
 .process-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(300px, 1fr));
-  margin: 2rem;
-  padding: 0;
+  grid-template-columns: repeat(4, minmax(400px, 1fr));
+  margin: 0;
+  gap: 1rem;
+  padding: 1rem;
   list-style-type: none;
-  max-height: 90vh;
 }
 
 .pagination-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5vh;
 }
 
 .margin-2 {
   margin: 2rem;
-}
-
-.margin-y-2 {
-  margin: 2rem 0;
 }

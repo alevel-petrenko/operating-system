@@ -1,6 +1,6 @@
-<h4 class="margin-2">All processes on {{ (computerName$ | async)?.name }}:</h4>
-<div>
-    <div>
+<div class="container">
+    <h4 class="margin-2">All processes on {{ (computerName$ | async)?.name }}:</h4>
+    <div class="process-list">
         <ol class="process-grid">
             @for(process of paginatedProcesses$ | async; track process.id) {
             <li>

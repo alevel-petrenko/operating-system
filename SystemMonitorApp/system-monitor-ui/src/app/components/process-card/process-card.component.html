@@ -3,11 +3,13 @@
         <mat-card-title>Threads:{{ process.threadCount }} - {{ process.name }}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <p>{{ process.memoryUsageKb }}Kb</p>
+        <p>{{ process.memoryUsageMb }}Mb</p>
     </mat-card-content>
     <mat-card-footer class="card-footer">
         <mat-chip-set>
-            <mat-chip>system</mat-chip>
+            @for(tag of process.tags; track tag) {
+            <mat-chip>{{ tag }}</mat-chip>
+            }
         </mat-chip-set>
     </mat-card-footer>
 </mat-card>

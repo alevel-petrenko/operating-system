@@ -19,7 +19,7 @@ public class ProcessProfile : Profile
         CreateMap<Process, ProcessInfo>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.ProcessName))
-            .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => GetProcessOwner(src.Id)))
+            //.ForMember(dest => dest.UserName, opt => opt.MapFrom(src => GetProcessOwner(src.Id)))
             .ForMember(dest => dest.MainWindowTitle, opt => opt.MapFrom(src => src.MainWindowTitle))
             .ForMember(dest => dest.Priority, opt => opt.MapFrom(src => GetPriority(src)))
             .ForMember(dest => dest.ThreadCount, opt => opt.MapFrom(src => src.Threads.Count))

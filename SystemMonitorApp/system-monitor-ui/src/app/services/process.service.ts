@@ -1,13 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DataApiService } from '../data-api.service';
-
-export interface ProcessInfo {
-  id: number;
-  name: string;
-  threadCount: number;
-  memoryUsageKb: number;
-}
+import { ProcessInfo } from '../models/ProcessInfo';
 
 @Injectable({
   providedIn: 'root'
