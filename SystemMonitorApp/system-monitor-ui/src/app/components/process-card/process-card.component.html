@@ -1,6 +1,7 @@
 <mat-card class="card" appearance="outlined">
     <mat-card-header>
         <mat-card-title>Threads:{{ process.threadCount }} - {{ process.name }}</mat-card-title>
+        <app-process-menu></app-process-menu>
     </mat-card-header>
     <mat-card-content>
         <p>{{ process.memoryUsageMb }}Mb</p>
@@ -10,6 +11,7 @@
             @for(tag of process.tags; track tag) {
             <mat-chip>{{ tag }}</mat-chip>
             }
+            <mat-chip><b>{{ process.priority }}</b></mat-chip>
         </mat-chip-set>
     </mat-card-footer>
 </mat-card>
