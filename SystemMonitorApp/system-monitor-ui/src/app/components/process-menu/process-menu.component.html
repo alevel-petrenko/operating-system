@@ -3,15 +3,15 @@
         <mat-icon>more_horiz</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-        <button mat-menu-item>
+        <button mat-menu-item (click)="increasePriority()">
             <mat-icon fontSet="material-symbols-outlined">arrow_warm_up</mat-icon>
             <span>Priority up</span>
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item (click)="decreasePriority()">
             <mat-icon fontSet="material-symbols-outlined">arrow_cool_down</mat-icon>
             <span>Priority down</span>
         </button>
-        <button class="danger" mat-menu-item>
+        <button class="danger" mat-menu-item (click)="killProcess()">
             <mat-icon fontSet="material-symbols-outlined">skull</mat-icon>
             <span>Kill process</span>
         </button>

@@ -19,4 +19,61 @@ public class ProcessController(IProcessService processService) : ControllerBase
     {
         return processService.GetActiveProcesses();
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="processId"></param>
+    /// <returns></returns>
+    [HttpPost("decreasePriority/{processId}")]
+    public IActionResult DecreasePriority(int processId)
+    {
+        try
+        {
+            processService.SetPriority(processId);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest($"Failed to set priority for process {processId}: {ex.Message}");
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="processId"></param>
+    /// <returns></returns>
+    [HttpPost("increasePriority/{processId}")]
+    public IActionResult IncreasePriority(int processId)
+    {
+        try
+        {
+            processService.SetPriority(processId);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest($"Failed to set priority for process {processId}: {ex.Message}");
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="processId"></param>
+    /// <returns></returns>
+    [HttpPost("kill/{processId}")]
+    public IActionResult KillProcess(int processId)
+    {
+        try
+        {
+            processService.KillProcess(processId);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest($"Failed to kill process {processId}: {ex.Message}");
+        }
+    }
 }

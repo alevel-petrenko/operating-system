@@ -12,9 +12,13 @@ export class DataApiService {
 
   public get<T>(endpoint: string = '', httpContext?: HttpContext): Observable<T> {
     const url = endpoint ? `${this.apiUrl}/${endpoint}` : this.apiUrl;
-    console.log(`Fetching data from: ${url}`);
 
     return this.http.get<T>(url);
-    // return this.http.get<T>(url, { ...(httpContext && { context: httpContext }) });
+  }
+
+  public post(endoint: string, body: any, httpContext?: HttpContext): void {
+    const url = endoint ? `${this.apiUrl}/${endoint}` : this.apiUrl;
+
+    this.http.post(url, body, { context: httpContext });
   }
 }
