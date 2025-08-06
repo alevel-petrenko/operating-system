@@ -11,9 +11,8 @@ public class ProcessProfile : Profile
     /// cref="Process"/> and <see cref="ProcessInfo"/> objects.
     /// </summary>
     /// <remarks>This constructor sets up mappings to transform properties of a <see
-    /// cref="System.Diagnostics.Process"/>  into corresponding properties of a <see cref="ProcessInfo"/> object. The
-    /// mappings include process  identifiers, names, priority levels, thread counts, and memory usage in
-    /// kilobytes.</remarks>
+    /// cref="System.Diagnostics.Process"/>  into corresponding properties of a <see cref="ProcessInfo"/> object.
+    /// </remarks>
     public ProcessProfile()
     {
         CreateMap<Process, ProcessInfo>()

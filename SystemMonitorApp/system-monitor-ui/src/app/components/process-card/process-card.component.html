@@ -1,17 +1,21 @@
 <mat-card class="card" appearance="outlined">
-    <mat-card-header>
-        <mat-card-title>Threads:{{ process.threadCount }} - {{ process.name }}</mat-card-title>
+    <mat-card-header class="card-header">
+        <mat-card-title>{{ ('Threads:' + process.threadCount + ' - ' + process.name) | length }}</mat-card-title>
         <app-process-menu></app-process-menu>
     </mat-card-header>
     <mat-card-content>
         <p>{{ process.memoryUsageMb }} Mb</p>
     </mat-card-content>
     <mat-card-footer class="card-footer">
-        <mat-chip-set>
-            @for(tag of process.tags; track tag) {
-            <mat-chip>{{ tag }}</mat-chip>
-            }
+        <div class="tag-chips">
+            <mat-chip-set>
+                @for(tag of process.tags; track tag) {
+                <mat-chip>{{ tag }}</mat-chip>
+                }
+            </mat-chip-set>
+        </div>
+        <div class="priority-chip">
             <mat-chip><b>{{ priorityEnum[process.priority] }}</b></mat-chip>
-        </mat-chip-set>
+        </div>
     </mat-card-footer>
 </mat-card>

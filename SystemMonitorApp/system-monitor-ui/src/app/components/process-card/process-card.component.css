@@ -5,4 +5,22 @@
 
 .card-footer {
   padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tag-chips {
+  display: flex;
+  gap: 4px;
+}
+
+.priority-chip {
+  margin-left: auto;
 }
