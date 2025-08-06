@@ -3,6 +3,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { ProcessInfo } from '../../models/ProcessInfo';
 import { ProcessMenuComponent } from '../process-menu/process-menu.component';
+import { ProcessPriority } from '../../models/ProcessPriority';
 
 @Component({
   selector: 'app-process-card',
@@ -13,4 +14,5 @@ import { ProcessMenuComponent } from '../process-menu/process-menu.component';
 })
 export class ProcessCardComponent {
   @Input() process!: ProcessInfo;
+  public priorityEnum = ProcessPriority
 }
