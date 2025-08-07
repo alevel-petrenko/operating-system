@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,6 +14,7 @@ import { ProcessService } from '../../services/process.service';
 })
 export class ProcessMenuComponent {
   @Input() process!: ProcessInfo;
+  @Output() refreshProcesses = new EventEmitter<void>();
 
   constructor(private readonly service: ProcessService) { }
 
@@ -26,6 +27,11 @@ export class ProcessMenuComponent {
   }
 
   killProcess() {
-    this.service.killProcess(this.process.id);
+    this.service.killProcess(this.process.id).subscribe({
+      next: () => {
+        console.log(`Process ${this.process.name} killed successfully`);
+        this.refreshProcesses.emit();
+      },
+    });
   }
 }

@@ -4,15 +4,19 @@
         <ol class="process-grid">
             @for(process of paginatedProcesses$ | async; track process.id) {
             <li>
-                <app-process-card [process]="process" />
+                <app-process-card [process]="process" (refreshProcesses)="loadProcesses()" />
             </li>
             }
         </ol>
     </div>
 
     <div class="pagination-container">
-        <button (click)="currentPage = currentPage - 1" [disabled]="currentPage === 1">←</button>
+        <button (click)="currentPage = currentPage - 1" [disabled]="currentPage === 1">
+            <mat-icon class="material-symbols-outlined">chevron_left</mat-icon>
+        </button>
         <span class="margin-2">Page {{ currentPage }} of {{ totalPages$ | async }}</span>
-        <button (click)="currentPage = currentPage + 1" [disabled]="(totalPages$ | async) === currentPage">→</button>
+        <button (click)="currentPage = currentPage + 1" [disabled]="(totalPages$ | async) === currentPage">
+            <mat-icon class="material-symbols-outlined">chevron_right</mat-icon>
+        </button>
     </div>
 </div>

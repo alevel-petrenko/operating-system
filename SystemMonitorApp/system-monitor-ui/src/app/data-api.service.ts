@@ -16,9 +16,8 @@ export class DataApiService {
     return this.http.get<T>(url);
   }
 
-  public post(endoint: string, body: any, httpContext?: HttpContext): void {
+  public post<T>(endoint: string, body: any, httpContext?: HttpContext): Observable<T> {
     const url = endoint ? `${this.apiUrl}/${endoint}` : this.apiUrl;
-
-    this.http.post(url, body, { context: httpContext });
+    return this.http.post<T>(url, body, { context: httpContext });
   }
 }

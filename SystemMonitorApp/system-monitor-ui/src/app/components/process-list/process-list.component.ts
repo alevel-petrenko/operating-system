@@ -2,22 +2,25 @@ import { Component } from '@angular/core';
 import { ProcessService } from '../../services/process.service';
 import { ProcessCardComponent } from '../process-card/process-card.component';
 import { ComputerInfo, ComputerService } from '../../services/computer.service';
-import { catchError, EMPTY, map, Observable, shareReplay, tap } from 'rxjs';
+import { BehaviorSubject, catchError, EMPTY, map, Observable, shareReplay, tap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { ProcessInfo } from '../../models/ProcessInfo';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-process-list',
   standalone: true,
   imports: [
     ProcessCardComponent,
-    AsyncPipe
+    AsyncPipe,
+    MatIconModule
   ],
   templateUrl: './process-list.component.html',
   styleUrl: './process-list.component.css'
 })
 export class ProcessListComponent {
-  public processes$: Observable<ProcessInfo[]>;
+  private processesSubject = new BehaviorSubject<ProcessInfo[]>([]);
+  public processes$ = this.processesSubject.asObservable();
   public computerName$: Observable<ComputerInfo>;
 
   public currentPage = 1;
@@ -27,12 +30,16 @@ export class ProcessListComponent {
     private processService: ProcessService,
     private computerService: ComputerService
   ) {
-    this.processes$ = this.processService.getProcesses()
+    this.loadProcesses();
+    this.computerName$ = this.computerService.getComputerName();
+  }
+
+  public loadProcesses(): void {
+    this.processService.getProcesses()
       .pipe(
         map(processes => processes.sort((a, b) => b.memoryUsageMb - a.memoryUsageMb)),
         tap({
-          next: processes =>
-          {
+          next: processes => {
             processes.forEach(process => {
               process.tags = this.knownSystemNames.includes(process.name) ? ['system'] : ['user'];
             });
@@ -41,11 +48,9 @@ export class ProcessListComponent {
         catchError((err) => {
           console.error('Error fetching processes:', err)
           return EMPTY;
-        }),
-        shareReplay({ bufferSize: 1, refCount: true })
-      );
-
-    this.computerName$ = this.computerService.getComputerName();
+        })
+      )
+      .subscribe(processes => this.processesSubject.next(processes));
   }
 
   get paginatedProcesses$(): Observable<ProcessInfo[]> {
@@ -63,5 +68,5 @@ export class ProcessListComponent {
     );
   }
 
-  private knownSystemNames: string[] = [ "Idle", "System", "csrss", "smss", "winlogon", "services", "lsass", "svchost", "fontdrvhost", "dwm" ];
+  private knownSystemNames: string[] = ["Idle", "System", "csrss", "smss", "winlogon", "services", "lsass", "svchost", "fontdrvhost", "dwm"];
 }

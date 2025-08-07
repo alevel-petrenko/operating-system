@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { ProcessInfo } from '../../models/ProcessInfo';
@@ -15,5 +15,11 @@ import { LengthPipe } from '../../pipes/lenght.pipe';
 })
 export class ProcessCardComponent {
   @Input() process!: ProcessInfo;
+  @Output() refreshProcesses = new EventEmitter<void>();
   public priorityEnum = ProcessPriority;
+
+  public onRefreshProcesses: () => void = () => {
+    console.log(`Refreshing processes for ${this.process.name}`);
+    this.refreshProcesses.emit();
+  };
 }
