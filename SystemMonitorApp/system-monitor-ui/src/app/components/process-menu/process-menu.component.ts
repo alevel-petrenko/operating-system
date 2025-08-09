@@ -29,7 +29,7 @@ export class ProcessMenuComponent {
   killProcess() {
     this.service.killProcess(this.process.id).subscribe({
       next: () => {
-        console.log(`Process ${this.process.name} killed successfully`);
+        console.log(`Process ${this.process.name} is killed successfully`);
         this.refreshProcesses.emit();
       },
     });

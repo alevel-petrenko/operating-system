@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.SignalR;
 using System.Diagnostics;
 using SystemMonitor.Api.Models;
+using SystemMonitor.Api.SignalR;
 
 namespace SystemMonitor.Api.Services;
 
-public class ProcessService(IMapper mapper) : IProcessService
+public class ProcessService(IMapper mapper, IHubContext<ProcessHub> hub) : IProcessService
 {
     public IEnumerable<ProcessInfo> GetActiveProcesses()
     {
@@ -26,5 +28,10 @@ public class ProcessService(IMapper mapper) : IProcessService
     {
         var process = Process.GetProcessById(processId);
         process?.Kill();
+    }
+
+    public async Task NotifyProcessesUpdated(List<ProcessInfo> processes)
+    {
+        await hub.Clients.All.SendAsync("ProcessesUpdated", processes);
     }
 }

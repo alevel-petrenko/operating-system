@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DataApiService } from '../data-api.service';
+import { DataApiService } from './data-api.service';
 import { Observable } from 'rxjs';
 import { withCache } from '@ngneat/cashew';
 

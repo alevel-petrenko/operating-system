@@ -6,6 +6,7 @@ import { BehaviorSubject, catchError, EMPTY, map, Observable, shareReplay, tap }
 import { AsyncPipe } from '@angular/common';
 import { ProcessInfo } from '../../models/ProcessInfo';
 import { MatIconModule } from '@angular/material/icon';
+import { ProcessSignalRService } from '../../services/process-signalr.service';
 
 @Component({
   selector: 'app-process-list',
@@ -28,10 +29,16 @@ export class ProcessListComponent {
 
   constructor(
     private processService: ProcessService,
-    private computerService: ComputerService
+    private computerService: ComputerService,
+    private signalRService: ProcessSignalRService
   ) {
+    this.signalRService.startConnection();
+
     this.loadProcesses();
     this.computerName$ = this.computerService.getComputerName();
+    this.signalRService.onProcessesUpdated((processes) => {
+      this.processesSubject.next(processes);
+    });
   }
 
   public loadProcesses(): void {

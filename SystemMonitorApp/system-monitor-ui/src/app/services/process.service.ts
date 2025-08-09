@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DataApiService } from '../data-api.service';
+import { DataApiService } from './data-api.service';
 import { ProcessInfo } from '../models/ProcessInfo';
 
 @Injectable({

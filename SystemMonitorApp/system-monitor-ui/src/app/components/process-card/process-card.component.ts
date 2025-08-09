@@ -19,7 +19,6 @@ export class ProcessCardComponent {
   public priorityEnum = ProcessPriority;
 
   public onRefreshProcesses: () => void = () => {
-    console.log(`Refreshing processes for ${this.process.name}`);
     this.refreshProcesses.emit();
   };
 }

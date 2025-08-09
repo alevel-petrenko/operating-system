@@ -12,6 +12,7 @@ public interface IProcessService
     /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="ProcessInfo"/> objects, where each object contains details about
     /// an active process. The collection will be empty if no processes are active.</returns>
     IEnumerable<ProcessInfo> GetActiveProcesses();
+    Task NotifyProcessesUpdated(List<ProcessInfo> processes);
 
     /// <summary>
     /// 

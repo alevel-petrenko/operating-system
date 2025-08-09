@@ -1,7 +1,9 @@
 using SystemMonitor.Api.Services;
+using SystemMonitor.Api.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddSignalR();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -32,6 +34,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseAuthorization();
 app.UseCors("AllowAngularApp");
+app.MapHub<ProcessHub>("/hubs/processes");
 app.MapControllers();
 
 app.Run();
