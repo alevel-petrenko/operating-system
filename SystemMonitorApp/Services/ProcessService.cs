@@ -30,7 +30,7 @@ public class ProcessService(IMapper mapper, IHubContext<ProcessHub> hub) : IProc
         process?.Kill();
     }
 
-    public async Task NotifyProcessesUpdated(List<ProcessInfo> processes)
+    public async Task NotifyProcessesUpdated(IEnumerable<ProcessInfo> processes)
     {
         await hub.Clients.All.SendAsync("ProcessesUpdated", processes);
     }

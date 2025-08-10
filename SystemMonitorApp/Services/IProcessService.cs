@@ -12,17 +12,23 @@ public interface IProcessService
     /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="ProcessInfo"/> objects, where each object contains details about
     /// an active process. The collection will be empty if no processes are active.</returns>
     IEnumerable<ProcessInfo> GetActiveProcesses();
-    Task NotifyProcessesUpdated(List<ProcessInfo> processes);
 
     /// <summary>
-    /// 
+    /// Notifies about an updated list of processes.
     /// </summary>
-    /// <param name="processId"></param>
+    /// <param name="processes">A collection of <see cref="ProcessInfo"/> objects containing information about the updated processes.</param>
+    /// <returns>A <see cref="Task"/> object that represents the asynchronous operation.</returns>
+    Task NotifyProcessesUpdated(IEnumerable<ProcessInfo> processes);
+
+    /// <summary>
+    /// Sets the priority for the specified process.
+    /// </summary>
+    /// <param name="processId">The identifier of the process for which to set the priority.</param>
     void SetPriority(int processId);
 
     /// <summary>
-    /// 
+    /// Terminates (kills) the specified process.
     /// </summary>
-    /// <param name="processId"></param>
+    /// <param name="processId">The identifier of the process to be terminated.</param>
     void KillProcess(int processId);
 }

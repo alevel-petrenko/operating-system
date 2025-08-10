@@ -3,6 +3,5 @@ using SystemMonitor.Api.Services;
 
 namespace SystemMonitor.Api.SignalR;
 
-public class ProcessHub(IProcessService processService) : Hub
-{
-}
+public class ProcessHub() : Hub
+{ }

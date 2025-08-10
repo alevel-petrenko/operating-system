@@ -21,10 +21,13 @@ public class ProcessController(IProcessService processService) : ControllerBase
     }
 
     /// <summary>
-    /// 
+    /// Decreases the priority of the specified process.
     /// </summary>
-    /// <param name="processId"></param>
-    /// <returns></returns>
+    /// <param name="processId">The identifier of the process whose priority should be decreased.</param>
+    /// <returns>
+    /// Returns **200 OK** if the operation is successful.
+    /// Returns **400 Bad Request** with an error message if the priority could not be set.
+    /// </returns>
     [HttpPost("decreasePriority/{processId}")]
     public IActionResult DecreasePriority(int processId)
     {
@@ -40,10 +43,13 @@ public class ProcessController(IProcessService processService) : ControllerBase
     }
 
     /// <summary>
-    /// 
+    /// Increases the priority of the specified process.
     /// </summary>
-    /// <param name="processId"></param>
-    /// <returns></returns>
+    /// <param name="processId">The identifier of the process whose priority should be increased.</param>
+    /// <returns>
+    /// Returns **200 OK** if the operation is successful.
+    /// Returns **400 Bad Request** with an error message if the priority could not be set.
+    /// </returns>
     [HttpPost("increasePriority/{processId}")]
     public IActionResult IncreasePriority(int processId)
     {
@@ -59,10 +65,13 @@ public class ProcessController(IProcessService processService) : ControllerBase
     }
 
     /// <summary>
-    /// 
+    /// Terminates (kills) the specified process.
     /// </summary>
-    /// <param name="processId"></param>
-    /// <returns></returns>
+    /// <param name="processId">The identifier of the process to be terminated.</param>
+    /// <returns>
+    /// Returns **200 OK** if the operation is successful.
+    /// Returns **400 Bad Request** with an error message if the process could not be killed.
+    /// </returns>
     [HttpPost("kill/{processId}")]
     public IActionResult KillProcess(int processId)
     {

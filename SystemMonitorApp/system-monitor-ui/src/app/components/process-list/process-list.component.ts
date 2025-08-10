@@ -36,21 +36,20 @@ export class ProcessListComponent {
 
     this.loadProcesses();
     this.computerName$ = this.computerService.getComputerName();
+
+    // SignalR subscription to update processes in real-time
     this.signalRService.onProcessesUpdated((processes) => {
-      this.processesSubject.next(processes);
+      const sorted = this.sortProcesses(processes);
+      this.processesSubject.next(this.addTagsToProcesses(sorted));
     });
   }
 
   public loadProcesses(): void {
     this.processService.getProcesses()
       .pipe(
-        map(processes => processes.sort((a, b) => b.memoryUsageMb - a.memoryUsageMb)),
+        map(processes => this.sortProcesses(processes)),
         tap({
-          next: processes => {
-            processes.forEach(process => {
-              process.tags = this.knownSystemNames.includes(process.name) ? ['system'] : ['user'];
-            });
-          }
+          next: processes => this.addTagsToProcesses(processes)
         }),
         catchError((err) => {
           console.error('Error fetching processes:', err)
@@ -73,6 +72,17 @@ export class ProcessListComponent {
     return this.processes$.pipe(
       map(processes => Math.ceil(processes.length / this.pageSize))
     );
+  }
+
+  private sortProcesses(processes: ProcessInfo[]): ProcessInfo[] {
+    return processes.sort((a, b) => b.memoryUsageMb - a.memoryUsageMb);
+  }
+
+  private addTagsToProcesses(processes: ProcessInfo[]): ProcessInfo[] {
+    processes.forEach(process => {
+      process.tags = this.knownSystemNames.includes(process.name) ? ['system'] : ['user'];
+    });
+    return processes;
   }
 
   private knownSystemNames: string[] = ["Idle", "System", "csrss", "smss", "winlogon", "services", "lsass", "svchost", "fontdrvhost", "dwm"];

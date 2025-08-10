@@ -1,3 +1,4 @@
+using SystemMonitor.Api.Background;
 using SystemMonitor.Api.Services;
 using SystemMonitor.Api.SignalR;
 
@@ -17,11 +18,13 @@ builder.Services.AddCors(options =>
         policy
             .WithOrigins("http://localhost:4200")
             .AllowAnyMethod()
-            .AllowAnyHeader();
+            .AllowAnyHeader()
+            .AllowCredentials();
     });
 });
 
-builder.Services.AddScoped<IProcessService, ProcessService>();
+builder.Services.AddSingleton<IProcessService, ProcessService>();
+builder.Services.AddHostedService<ProcessBackgroundService>();
 
 var app = builder.Build();
 
