@@ -21,10 +21,16 @@ public interface IProcessService
     Task NotifyProcessesUpdated(IEnumerable<ProcessInfo> processes);
 
     /// <summary>
-    /// Sets the priority for the specified process.
+    /// Sets the priority for the specified process up.
     /// </summary>
     /// <param name="processId">The identifier of the process for which to set the priority.</param>
-    void SetPriority(int processId);
+    void SetPriorityUp(int processId);
+
+    /// <summary>
+    /// Sets the priority for the specified process down.
+    /// </summary>
+    /// <param name="processId">The identifier of the process for which to set the priority.</param>
+    void SetPriorityDown(int processId);
 
     /// <summary>
     /// Terminates (kills) the specified process.

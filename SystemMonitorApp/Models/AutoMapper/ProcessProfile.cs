@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System.Diagnostics;
 using System.Management;
+using SystemMonitor.Api.Extensions;
 
 namespace SystemMonitor.Api.Models.AutoMapper;
 
@@ -37,15 +38,15 @@ public class ProcessProfile : Profile
         return DateTime.Now;
     }
 
-    private static ProcessPriorityClass GetPriority(Process process)
+    private static ProcessPriority GetPriority(Process process)
     {
         try
         {
-            return process.PriorityClass;
+            return process.PriorityClass.ToMyPriority();
         }
         catch { }
 
-        return ProcessPriorityClass.Normal;
+        return ProcessPriority.Normal;
     }
 
     private static string GetProcessOwner(int processId)

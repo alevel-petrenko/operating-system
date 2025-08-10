@@ -33,7 +33,7 @@ public class ProcessController(IProcessService processService) : ControllerBase
     {
         try
         {
-            processService.SetPriority(processId);
+            processService.SetPriorityDown(processId);
             return Ok();
         }
         catch (Exception ex)
@@ -55,7 +55,7 @@ public class ProcessController(IProcessService processService) : ControllerBase
     {
         try
         {
-            processService.SetPriority(processId);
+            processService.SetPriorityUp(processId);
             return Ok();
         }
         catch (Exception ex)

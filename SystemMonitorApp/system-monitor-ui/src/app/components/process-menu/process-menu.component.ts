@@ -19,11 +19,21 @@ export class ProcessMenuComponent {
   constructor(private readonly service: ProcessService) { }
 
   increasePriority() {
-    this.service.increasePriority(this.process.id);
+    this.service.increasePriority(this.process.id).subscribe({
+      next: () => {
+        console.log(`Process ${this.process.name} requested higher priority`);
+        this.refreshProcesses.emit();
+      }
+    });
   }
 
   decreasePriority() {
-    this.service.decreasePriority(this.process.id);
+    this.service.decreasePriority(this.process.id).subscribe({
+      next: () => {
+        console.log(`Process ${this.process.name} requested lower priority`);
+        this.refreshProcesses.emit();
+      }
+    });
   }
 
   killProcess() {

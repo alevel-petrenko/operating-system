@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.SignalR;
 using System.Diagnostics;
+using SystemMonitor.Api.Extensions;
 using SystemMonitor.Api.Models;
 using SystemMonitor.Api.SignalR;
 
@@ -13,14 +14,25 @@ public class ProcessService(IMapper mapper, IHubContext<ProcessHub> hub) : IProc
         return mapper.Map<IEnumerable<ProcessInfo>>(Process.GetProcesses());
     }
 
-    public void SetPriority(int processId)
+    public void SetPriorityUp(int processId)
     {
         var process = Process.GetProcessById(processId);
 
         if (process != null)
         {
-            // TODO Set the real process priority
-            process.PriorityClass = ProcessPriorityClass.High;
+            var nextPrio = process.PriorityClass.ToMyPriority().GetNext();
+            process.PriorityClass = nextPrio.ToMicrosoftPriority();
+        }
+    }
+
+    public void SetPriorityDown(int processId)
+    {
+        var process = Process.GetProcessById(processId);
+
+        if (process != null)
+        {
+            var prevPrio = process.PriorityClass.ToMyPriority().GetPrevious();
+            process.PriorityClass = prevPrio.ToMicrosoftPriority();
         }
     }
 
