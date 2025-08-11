@@ -2,19 +2,11 @@
 using System.Diagnostics;
 using System.Management;
 using SystemMonitor.Api.Extensions;
-using SystemMonitor.Api.Services;
 
 namespace SystemMonitor.Api.Models.AutoMapper;
 
 public class ProcessProfile : Profile
 {
-    private readonly ILoggingService _logger;
-
-    public ProcessProfile(ILoggingService logger)
-    {
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-    }
-
     /// <summary>
     /// Initializes a new instance of the <see cref="ProcessProfile"/> class, configuring mappings  between <see
     /// cref="Process"/> and <see cref="ProcessInfo"/> objects.
@@ -35,7 +27,7 @@ public class ProcessProfile : Profile
             .ForMember(dest => dest.MemoryUsageMb, opt => opt.MapFrom(src => src.WorkingSet64 / 1048576));
     }
 
-    private DateTime GetStartTime(Process process)
+    private static DateTime GetStartTime(Process process)
     {
         try
         {
@@ -43,13 +35,12 @@ public class ProcessProfile : Profile
         }
         catch
         {
-            _logger.LogError($"Failed to get start time for process {process.ProcessName}. It may have exited or you lack of permissions.");
         }
 
         return DateTime.Now;
-    }
+    } 
 
-    private ProcessPriority GetPriority(Process process)
+    private static ProcessPriority GetPriority(Process process)
     {
         try
         {
@@ -57,7 +48,6 @@ public class ProcessProfile : Profile
         }
         catch
         {
-            _logger.LogError($"Failed to get priority for process {process.ProcessName}. It may have exited or you lack of permissions.");
         }
 
         return ProcessPriority.Normal;

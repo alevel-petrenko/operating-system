@@ -9,6 +9,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.txt // to skip log files
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

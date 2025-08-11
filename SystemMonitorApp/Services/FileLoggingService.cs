@@ -4,7 +4,7 @@ namespace SystemMonitor.Api.Services;
 public class FileLoggingService : ILoggingService
 {
     private static readonly object _logLock = new();
-    private const string LogFileName = "logs/error.log";
+    private const string LogFileName = "logs.txt";
 
     public void LogError(string message)
     {

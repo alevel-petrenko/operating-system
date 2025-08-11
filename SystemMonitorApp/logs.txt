@@ -1,0 +1,11 @@
+11.08.2025 23:27:42: INFO - Retrieved computer name: DESKTOP-IOOC0VD
+11.08.2025 23:28:47: INFO - Setting priority for process Telegram (ID: 5700) to higher priority.
+11.08.2025 23:28:53: INFO - Setting priority for process Telegram (ID: 5700) to higher priority.
+11.08.2025 23:28:58: INFO - Setting priority for process Telegram (ID: 5700) to lower priority.
+11.08.2025 23:29:03: INFO - Setting priority for process Telegram (ID: 5700) to higher priority.
+11.08.2025 23:29:09: INFO - Setting priority for process Telegram (ID: 5700) to higher priority.
+11.08.2025 23:29:20: INFO - Setting priority for process Telegram (ID: 5700) to lower priority.
+11.08.2025 23:29:33: INFO - Killing process Telegram (ID: 5700).
+11.08.2025 23:31:42: INFO - Setting priority for process ServiceHub.Host.dotnet.x64 (ID: 13024) to lower priority.
+11.08.2025 23:31:52: INFO - Setting priority for process Telegram (ID: 15032) to lower priority.
+11.08.2025 23:32:00: INFO - Setting priority for process Telegram (ID: 15032) to lower priority.
