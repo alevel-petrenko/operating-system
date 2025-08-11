@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>Process Details - {{process.name}}</h2>
+<mat-dialog-content>
+    <p><b>General Info</b></p>
+    <table>
+        <tr>
+            <td><b>PID:</b></td>
+            <td>{{process.id}}</td>
+        </tr>
+        <tr>
+            <td><b>Priority:</b></td>
+            <td>{{process.priority}}</td>
+        </tr>
+        <tr>
+            <td><b>Memory:</b></td>
+            <td>{{process.memoryUsageMb}} Mb</td>
+        </tr>
+        <tr>
+            <td><b>Start Time:</b></td>
+            <td>{{process.startTime | date:'shortTime'}}</td>
+        </tr>
+        <tr>
+            <td><b>Thread Count:</b></td>
+            <td>{{process.threadCount}}</td>
+        </tr>
+    </table>
+
+    <br />
+    
+    <p><b>Environment Variables</b></p>
+    <table class="env-table">
+        <tr>
+            <th>Name</th>
+            <th>Value</th>
+        </tr>
+        <!-- <tr *ngFor="let ev of process.envVars">
+            <td>{{ev.name}}</td>
+            <td>{{ev.value}}</td>
+        </tr> -->
+    </table>
+</mat-dialog-content>

@@ -4,6 +4,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { ProcessInfo } from '../../models/ProcessInfo';
 import { ProcessService } from '../../services/process.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ProcessDetailsModalComponent } from '../process-details-modal/process-details-modal.component';
 
 @Component({
   selector: 'app-process-menu',
@@ -16,7 +18,9 @@ export class ProcessMenuComponent {
   @Input() process!: ProcessInfo;
   @Output() refreshProcesses = new EventEmitter<void>();
 
-  constructor(private readonly service: ProcessService) { }
+  constructor(private readonly service: ProcessService,
+    private dialog: MatDialog
+  ) { }
 
   increasePriority() {
     this.service.increasePriority(this.process.id).subscribe({
@@ -34,6 +38,14 @@ export class ProcessMenuComponent {
         this.refreshProcesses.emit();
       }
     });
+  }
+
+  showDetails() {
+    this.dialog.open(ProcessDetailsModalComponent, {
+      width: '800px',
+      minHeight: '600px',
+      data: this.process
+    })
   }
 
   killProcess() {
