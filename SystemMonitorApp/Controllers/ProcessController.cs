@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 using SystemMonitor.Api.Models;
 using SystemMonitor.Api.Services;
 
 namespace SystemMonitor.Api.Controllers;
 
 [Route("api/[controller]")]
-public class ProcessController(IProcessService processService) : ControllerBase
+public class ProcessController(IProcessService processService, ILoggingService logger) : ControllerBase
 {
     /// <summary>
     /// Retrieves a collection of information about all currently active processes.
@@ -15,9 +16,17 @@ public class ProcessController(IProcessService processService) : ControllerBase
     /// call.</remarks>
     /// <returns>An enumerable collection of <see cref="ProcessInfo"/> objects representing the active processes.</returns>
     [HttpGet("all")]
-    public IEnumerable<ProcessInfo> GetActiveProcesses()
+    public ActionResult<IEnumerable<ProcessInfo>> GetActiveProcesses()
     {
-        return processService.GetActiveProcesses();
+        try
+        {
+            return Ok(processService.GetActiveProcesses());
+        }
+        catch (Exception ex)
+        {
+            logger.LogError("Failed to retrieve active processes: " + ex.Message);
+            return BadRequest("Failed to retrieve active processes.");
+        }
     }
 
     /// <summary>
@@ -38,7 +47,8 @@ public class ProcessController(IProcessService processService) : ControllerBase
         }
         catch (Exception ex)
         {
-            return BadRequest($"Failed to set priority for process {processId}: {ex.Message}");
+            logger.LogError($"Failed to decrease priority for process {processId}: {ex.Message}");
+            return BadRequest($"Failed to decrease priority for process {processId}.");
         }
     }
 
@@ -60,7 +70,8 @@ public class ProcessController(IProcessService processService) : ControllerBase
         }
         catch (Exception ex)
         {
-            return BadRequest($"Failed to set priority for process {processId}: {ex.Message}");
+            logger.LogError($"Failed to increase priority for process {processId}: {ex.Message}");
+            return BadRequest($"Failed to increase priority for process {processId}.");
         }
     }
 
@@ -82,7 +93,8 @@ public class ProcessController(IProcessService processService) : ControllerBase
         }
         catch (Exception ex)
         {
-            return BadRequest($"Failed to kill process {processId}: {ex.Message}");
+            logger.LogError($"Failed to kill process {processId}: {ex.Message}");
+            return BadRequest($"Failed to kill process {processId}.");
         }
     }
 }

@@ -2,5 +2,6 @@
 
 public interface ILoggingService
 {
-    void Log(string message, LogLevel level = LogLevel.Information);
+    void LogInfo(string message);
+    void LogError(string message);
 }

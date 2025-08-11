@@ -23,6 +23,7 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddSingleton<ILoggingService, FileLoggingService>();
 builder.Services.AddSingleton<IProcessService, ProcessService>();
 builder.Services.AddHostedService<ProcessBackgroundService>();
 

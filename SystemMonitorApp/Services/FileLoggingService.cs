@@ -1,11 +1,28 @@
 ﻿
-namespace SystemMonitor.Api.Services
+namespace SystemMonitor.Api.Services;
+
+public class FileLoggingService : ILoggingService
 {
-    public class FileLoggingService : ILoggingService
+    private static readonly object _logLock = new();
+    private const string LogFileName = "logs/error.log";
+
+    public void LogError(string message)
     {
-        public void Log(string message, LogLevel level = LogLevel.Information)
+        lock (_logLock)
         {
-            throw new NotImplementedException();
+            using var stream = new FileStream(LogFileName, FileMode.Append, FileAccess.Write, FileShare.Read);
+            using var writer = new StreamWriter(stream);
+            writer.WriteLine($"{DateTime.Now}: ERROR - {message}");
+        }
+    }
+
+    public void LogInfo(string message)
+    {
+        lock (_logLock)
+        {
+            using var stream = new FileStream(LogFileName, FileMode.Append, FileAccess.Write, FileShare.Read);
+            using var writer = new StreamWriter(stream);
+            writer.WriteLine($"{DateTime.Now}: INFO - {message}");
         }
     }
 }
