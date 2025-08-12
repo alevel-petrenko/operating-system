@@ -14,8 +14,10 @@ export class ProcessDetailsModalComponent {
   constructor(
     public dialogRef: MatDialogRef<ProcessDetailsModalComponent>,
     @Inject(MAT_DIALOG_DATA) public process: ProcessInfo
-  ) {}
+  ) { }
 
+
+  
   close(): void {
     this.dialogRef.close();
   }
