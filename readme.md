@@ -29,13 +29,6 @@
 
 ### 💻 Practical Project: Process Monitor
 
-**Description:** Build a console app that:
-- [x] Lists active processes and threads
-- [x] Displays environment variables
-- [x] Shows and changes thread priorities
-- [x] Can stop/restart a process
-- [x] Logs to a file with support for concurrent access
-
 **Description:**
 ⚠ Warning
 Terminating important or system processes may cause system instability or shutdown. Proceed with caution!
@@ -52,7 +45,7 @@ A visual interface for monitoring and managing processes on Windows, built with 
 - Change process priority
 - Terminate processes (Kill process)
 - View detailed process information and all system environment variables (not only for a specific process).
-- Writes logs into the .txt file in the root
+- Writes logs into the .txt file with support for concurrent access
 
 **Technologies:**
 - `System.Diagnostics`
