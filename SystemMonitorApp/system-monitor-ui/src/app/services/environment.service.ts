@@ -8,7 +8,7 @@ import { DataApiService } from './data-api.service';
 export class EnvironmentService {
   constructor(private api: DataApiService) { }
 
-  public getEnvironmentVariables(processId: number): Observable<Record<string, string>> {
-    return this.api.get<Record<string, string>>(`environment/${processId}`);
+  public getEnvironmentVariables(): Observable<Record<string, string>> {
+    return this.api.get<Record<string, string>>(`environment/all`);
   }
 }

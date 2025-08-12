@@ -25,4 +25,23 @@ public class EnvironmentController(ILoggingService logger, IEnvironmentService e
             return BadRequest($"Failed to retrieve environment variables for process {processId}.");
         }
     }
+
+    /// <summary>
+    /// Retrieves all environment variables.
+    /// </summary>
+    /// <returns>A dictionary containing the environment variables.</returns>
+    [HttpGet("all")]
+    public ActionResult<Dictionary<string, string>> GetEnviromnmentVariables()
+    {
+        try
+        {
+            var envVars = Environment.GetEnvironmentVariables();
+            return Ok(envVars);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError($"Failed to retrieve environment variables: {ex.Message}");
+            return BadRequest($"Failed to retrieve environment variables.");
+        }
+    }
 }

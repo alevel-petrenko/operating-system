@@ -18,6 +18,7 @@ public class ComputerController(ILoggingService logger) : ControllerBase
     {
         var name = Environment.MachineName;
         logger.LogInfo($"Retrieved computer name: {name}");
+
         return Ok(new ComputerInfo { Name = name });
     }
 }

@@ -42,7 +42,7 @@ export class ProcessMenuComponent {
 
   showDetails() {
     this.dialog.open(ProcessDetailsModalComponent, {
-      width: '800px',
+      minWidth: '1000px',
       minHeight: '600px',
       data: this.process
     })
