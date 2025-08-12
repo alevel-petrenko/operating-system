@@ -29,13 +29,11 @@
 
 ### 💻 Practical Project: Process Monitor
 
-**Description:**
-⚠ Warning
-Terminating important or system processes may cause system instability or shutdown. Proceed with caution!
+⚠ Warning ⚠<br>
+Terminating important or system processes may cause system instability or shutdown. Proceed with caution!<br>
 
-Process Monitor UI
-A visual interface for monitoring and managing processes on Windows, built with .NET 8.
-
+This is a visual interface for monitoring and managing processes on Windows, built with .NET 8.<br>
+Example of view ⬇️
 ![Service preview](1.png)
 ![Service preview](2.png)
 
