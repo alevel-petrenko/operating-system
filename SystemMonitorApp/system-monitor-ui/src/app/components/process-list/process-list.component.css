@@ -25,6 +25,12 @@
   height: 5vh;
 }
 
+.pagination-button {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+
 .margin-2 {
   margin: 2rem;
 }

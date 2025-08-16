@@ -24,7 +24,7 @@ export class ProcessListComponent {
   public processes$ = this.processesSubject.asObservable();
   public computerName$: Observable<ComputerInfo>;
 
-  public currentPage = 1;
+  public currentPage = 0;
   public pageSize = 16;
 
   constructor(
@@ -56,7 +56,13 @@ export class ProcessListComponent {
           return EMPTY;
         })
       )
-      .subscribe(processes => this.processesSubject.next(processes));
+      .subscribe(processes => {
+        this.processesSubject.next(processes);
+
+        if (processes.length > 0) {
+          this.currentPage = 1;
+        }
+      });
   }
 
   get paginatedProcesses$(): Observable<ProcessInfo[]> {
@@ -80,7 +86,7 @@ export class ProcessListComponent {
 
   private addTagsToProcesses(processes: ProcessInfo[]): ProcessInfo[] {
     processes.forEach(process => {
-      process.tags = this.knownSystemNames.includes(process.name) ? ['system'] : ['user'];
+      process.tags = this.knownSystemNames.includes(process.name) ? ['System'] : ['User'];
     });
     return processes;
   }

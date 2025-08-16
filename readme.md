@@ -32,7 +32,7 @@
 ⚠ Warning ⚠<br>
 Terminating important or system processes may cause system instability or shutdown. Proceed with caution!<br>
 
-This is a visual interface for monitoring and managing processes on Windows, built with .NET 8.<br>
+This is a visual interface for monitoring and managing processes on Windows and MacOS, built with .NET 8.<br>
 Example of view ⬇️
 ![Service preview](1.png)
 ![Service preview](2.png)
@@ -48,10 +48,10 @@ Example of view ⬇️
 **Technologies:**
 - `System.Diagnostics`
 - `Environment`
-- `Thread`, `Task`, `Mutex`, `Semaphore`, `ThreadPriority`
+- `Thread`, `Task`, `lock`, `ThreadPriority`
 - `FileStream`, `FileShare`
 - `SignalR`
 - `AutoMapper`
 - `Angular`
 - `.NET 8`
-- `Process.GetProcesses() (Windows only)`
+- `Process.GetProcesses()`

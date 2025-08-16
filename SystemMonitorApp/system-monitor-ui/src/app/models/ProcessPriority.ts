@@ -1,8 +1,8 @@
 export enum ProcessPriority
 {
-    Idle = 1,
-    BelowNormal = 2,
-    Normal = 3,
-    AboveNormal = 4,
-    High = 5,
+    Idle = 0,
+    BelowNormal = 1,
+    Normal = 2,
+    AboveNormal = 3,
+    High = 4,
 }

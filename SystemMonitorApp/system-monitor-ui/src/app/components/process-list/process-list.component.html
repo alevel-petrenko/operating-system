@@ -11,11 +11,11 @@
     </div>
 
     <div class="pagination-container">
-        <button (click)="currentPage = currentPage - 1" [disabled]="currentPage === 1">
+        <button class="pagination-button" (click)="currentPage = currentPage - 1" [disabled]="currentPage === 0 || currentPage === 1">
             <mat-icon class="material-symbols-outlined">chevron_left</mat-icon>
         </button>
         <span class="margin-2">Page {{ currentPage }} of {{ totalPages$ | async }}</span>
-        <button (click)="currentPage = currentPage + 1" [disabled]="(totalPages$ | async) === currentPage">
+        <button class="pagination-button" (click)="currentPage = currentPage + 1" [disabled]="(totalPages$ | async) === currentPage">
             <mat-icon class="material-symbols-outlined">chevron_right</mat-icon>
         </button>
     </div>

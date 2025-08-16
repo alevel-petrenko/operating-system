@@ -2,12 +2,12 @@
 
 public enum ProcessPriority
 {
-    Idle = 1,
-    BelowNormal = 2,
-    Normal = 3,
-    AboveNormal = 4,
-    High = 5,
+    Idle = 0,
+    BelowNormal = 1,
+    Normal = 2,
+    AboveNormal = 3,
+    High = 4,
 
     // Not used in the UI to avoid system freeze, but available for completeness
-    RealTime = 6
+    RealTime = 5
 }

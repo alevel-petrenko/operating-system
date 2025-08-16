@@ -10,7 +10,7 @@ public static class EnumExtensions
         var allValues = (ProcessPriority[])Enum.GetValues(typeof(ProcessPriority));
         int currentIndex = Array.IndexOf(allValues, value);
 
-        if (currentIndex + 1 < (int)allValues.Last())
+        if (currentIndex + 1 < (int)ProcessPriority.RealTime)
             return allValues[currentIndex + 1];
         else
             return allValues[currentIndex];

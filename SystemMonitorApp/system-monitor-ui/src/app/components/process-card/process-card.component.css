@@ -4,10 +4,9 @@
 }
 
 .card-footer {
-  padding: 16px;
+  padding: 14px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 .card-header {
@@ -18,7 +17,7 @@
 
 .tag-chips {
   display: flex;
-  gap: 4px;
+  gap: 3px;
 }
 
 .priority-chip {
