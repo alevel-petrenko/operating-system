@@ -35,7 +35,7 @@ Terminating important or system processes may cause system instability or shutdo
 This is a visual interface for monitoring and managing processes on Windows and MacOS, built with .NET 8.<br>
 Example of view ⬇️
 ![Service preview](1.png)
-![Service preview](2.png)
+![Service details](2.png)
 
 **Features**
 - Display all active processes in the system

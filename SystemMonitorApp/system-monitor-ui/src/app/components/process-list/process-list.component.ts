@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ProcessService } from '../../services/process.service';
 import { ProcessCardComponent } from '../process-card/process-card.component';
 import { ComputerInfo, ComputerService } from '../../services/computer.service';
-import { BehaviorSubject, catchError, EMPTY, map, Observable, shareReplay, tap } from 'rxjs';
+import { BehaviorSubject, catchError, EMPTY, map, Observable, shareReplay, Subject, takeUntil, tap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { ProcessInfo } from '../../models/ProcessInfo';
 import { MatIconModule } from '@angular/material/icon';
@@ -23,6 +23,7 @@ export class ProcessListComponent {
   private processesSubject = new BehaviorSubject<ProcessInfo[]>([]);
   public processes$ = this.processesSubject.asObservable();
   public computerName$: Observable<ComputerInfo>;
+  private destroy$ = new Subject<void>();
 
   public currentPage = 0;
   public pageSize = 16;
@@ -47,6 +48,7 @@ export class ProcessListComponent {
   public loadProcesses(): void {
     this.processService.getProcesses()
       .pipe(
+        takeUntil(this.destroy$),
         map(processes => this.sortProcesses(processes)),
         tap({
           next: processes => this.addTagsToProcesses(processes)
