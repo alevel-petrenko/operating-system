@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>Process Details - {{process.name}}</h2>
+<mat-dialog-content>
+    <p><b>General Info</b></p>
+    <table>
+        <tr>
+            <td><b>PID:</b></td>
+            <td>{{process.id}}</td>
+        </tr>
+        <tr>
+            <td><b>Priority:</b></td>
+            <td>{{process.priority}}</td>
+        </tr>
+        <tr>
+            <td><b>Memory:</b></td>
+            <td>{{process.memoryUsageMb}} Mb</td>
+        </tr>
+        <tr>
+            <td><b>Start Time:</b></td>
+            <td>{{process.startTime | date:'shortTime'}}</td>
+        </tr>
+        <tr>
+            <td><b>Thread Count:</b></td>
+            <td>{{process.threadCount}}</td>
+        </tr>
+    </table>
+
+    <br />
+
+    <p><b>All Environment Variables</b> (just in case you were looking for them 😼)</p>
+    <table class="env-table">
+        <tr>
+            <th>Name</th>
+            <th>Value</th>
+        </tr>
+        @for(variable of envVars$ | async | keyvalue; track variable.key) {
+        <tr>
+            <td>{{variable.key}}</td>
+            <td>{{variable.value | length: 75}}</td>
+        </tr>
+        }
+    </table>
+</mat-dialog-content>

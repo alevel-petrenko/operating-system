@@ -5,40 +5,53 @@
 
 ### 📚 Theoretical Topics
 
-- [ ] **Application structure**
-  - [ ] Understand .exe/.dll layout, Entry Point, PE format
-  - [ ] Explore Windows Registry and environment variables
-- [ ] **OS Resources & Handles**
-  - [ ] Learn about handles and resource management via WinAPI
-- [ ] **User interaction (Event Loop, Messages)**
-  - [ ] Understand message loops in WinForms/WPF
-  - [ ] Learn about Windows Messages (e.g., WM_COMMAND, GetMessage/DispatchMessage)
-- [ ] **Process and Thread Management**
-  - [ ] Thread creation, priorities, context switching
-  - [ ] Understand thread priority via `Thread.Priority`
-- [ ] **Thread synchronization primitives**
-  - [ ] Practice with Mutex, Semaphore, Monitor, lock, EventWaitHandle, Interlocked
-- [ ] **I/O (file access & concurrency control)**
-  - [ ] FileStream vs File, FileShare, file locks
-- [ ] **Memory management**
-  - [ ] Stack vs Heap, .NET GC, P/Invoke, VirtualAlloc/VirtualFree
-- [ ] **Windows vs macOS**
-  - [ ] Compare kernel architecture
-  - [ ] Understand memory & process management differences
-  - [ ] Study API surface differences (WinAPI vs POSIX)
+- [x] **Application structure**
+  - [x] Understand .exe/.dll layout, Entry Point, PE format
+  - [x] Explore Windows Registry and environment variables
+- [x] **OS Resources & Handles**
+  - [x] Learn about handles and resource management via WinAPI
+- [x] **User interaction (Event Loop, Messages)**
+  - [x] Understand message loops in WinForms/WPF
+  - [x] Learn about Windows Messages (e.g., WM_COMMAND, GetMessage/DispatchMessage)
+- [x] **Process and Thread Management**
+  - [x] Thread creation, priorities, context switching
+  - [x] Understand thread priority via `Thread.Priority`
+- [x] **Thread synchronization primitives**
+  - [x] Practice with Mutex, Semaphore, Monitor, lock, EventWaitHandle, Interlocked
+- [x] **I/O (file access & concurrency control)**
+  - [x] FileStream vs File, FileShare, file locks
+- [x] **Memory management**
+  - [x] Stack vs Heap, .NET GC, P/Invoke, VirtualAlloc/VirtualFree
+- [x] **Windows vs macOS**
+  - [x] Compare kernel architecture
+  - [x] Understand memory & process management differences
+  - [x] Study API surface differences (WinAPI vs POSIX)
 
-### 💻 Practical Project: Windows System Monitor
+### 💻 Practical Project: Process Monitor
 
-**Description:** Build a console app that:
-- [ ] Lists active processes and threads
-- [ ] Displays environment variables
-- [ ] Shows and changes thread priorities
-- [ ] Can stop/restart a process
-- [ ] Logs to a file with support for concurrent access
+⚠ Warning ⚠<br>
+Terminating important or system processes may cause system instability or shutdown. Proceed with caution!<br>
+
+This is a visual interface for monitoring and managing processes on Windows and MacOS, built with .NET 8.<br>
+Example of view ⬇️
+![Service preview](1.png)
+![Service details](2.png)
+
+**Features**
+- Display all active processes in the system
+- Show thread count, memory usage, and process name
+- Change process priority
+- Terminate processes (Kill process)
+- View detailed process information and all system environment variables (not only for a specific process).
+- Writes logs into the .txt file with support for concurrent access
 
 **Technologies:**
 - `System.Diagnostics`
 - `Environment`
-- `Thread`, `Task`, `Mutex`, `Semaphore`, `ThreadPriority`
+- `Thread`, `Task`, `lock`, `ThreadPriority`
 - `FileStream`, `FileShare`
-- `P/Invoke`, `VirtualAlloc`
+- `SignalR`
+- `AutoMapper`
+- `Angular`
+- `.NET 8`
+- `Process.GetProcesses()`
