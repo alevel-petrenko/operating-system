@@ -1,0 +1,25 @@
+.card {
+  max-width: 400px;
+  margin: 1rem;
+}
+
+.card-footer {
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tag-chips {
+  display: flex;
+  gap: 3px;
+}
+
+.priority-chip {
+  margin-left: auto;
+}

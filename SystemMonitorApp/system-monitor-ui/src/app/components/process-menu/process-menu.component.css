@@ -1,0 +1,13 @@
+.card-menu {
+    flex: 1 1 auto;
+}
+
+.card-menu button {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+.danger {
+  background-color: rgba(253, 0, 0, 0.582);
+}

@@ -1,0 +1,22 @@
+<div class="container">
+    <h4 class="margin-2">All processes on {{ (computerName$ | async)?.name }}:</h4>
+    <div class="process-list">
+        <ol class="process-grid">
+            @for(process of paginatedProcesses$ | async; track process.id) {
+            <li>
+                <app-process-card [process]="process" (refreshProcesses)="loadProcesses()" />
+            </li>
+            }
+        </ol>
+    </div>
+
+    <div class="pagination-container">
+        <button class="pagination-button" (click)="currentPage = currentPage - 1" [disabled]="currentPage === 0 || currentPage === 1">
+            <mat-icon class="material-symbols-outlined">chevron_left</mat-icon>
+        </button>
+        <span class="margin-2">Page {{ currentPage }} of {{ totalPages$ | async }}</span>
+        <button class="pagination-button" (click)="currentPage = currentPage + 1" [disabled]="(totalPages$ | async) === currentPage">
+            <mat-icon class="material-symbols-outlined">chevron_right</mat-icon>
+        </button>
+    </div>
+</div>
