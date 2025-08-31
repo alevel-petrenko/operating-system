@@ -18,67 +18,66 @@ internal class Value_Ref_Types
         DoRefExample3();
     }
 
-    internal void DoValueExample1()
+    internal static void DoValueExample1()
     {
-        Point pt = new Point { X = 5 };
-        void Move(Point p) { p.X += 10; }
+        Point pt = new() { X = 5 };
+        static void Move(Point p) { p.X += 10; }
         Move(pt);
 
-        Console.WriteLine(pt.X);  // 5 — бо копія
+        Console.WriteLine(pt.X);  // 5
     }
 
-    internal void DoValueExample2()
+    internal static void DoValueExample2()
     {
-        Point pt = new Point { X = 5 };
-        void Move(ref Point p) { p.X += 10; }
+        Point pt = new() { X = 5 };
+        static void Move(ref Point p) { p.X += 10; }
 
         Move(ref pt);
-        Console.WriteLine(pt.X);  // 15 — бо передано по посиланню
+        Console.WriteLine(pt.X);  // 15
     }
 
-    internal void DoValueExample3()
+    internal static void DoValueExample3()
     {
-        Point pt = new Point { X = 5 };
-        void Move(ref Point p) { p = new() { X = 100 }; }
+        Point pt = new() { X = 5 };
+        static void Move(ref Point p) { p = new() { X = 100 }; }
 
         Move(ref pt);
         Console.WriteLine(pt.X);  // 100
     }
 
-    internal void DoValueExample4()
+    internal static void DoValueExample4()
     {
-        Point pt = new Point { X = 5 };
-        void Move(Point p) { p = new() { X = 100 }; }
+        Point pt = new() { X = 5 };
+        static void Move(Point p) { p = new() { X = 100 }; }
 
         Move(pt);
-        Console.WriteLine(pt.X);  // 100 X — бо копія, змінено лише локальну копію
+        Console.WriteLine(pt.X);  // 5
     }
 
-    internal void DoRefExample1()
+    internal static void DoRefExample1()
     {
-        void Change(Box b) { b.Value += 1; }
+        static void Change(Box b) { b.Value += 1; }
 
         Box box = new() { Value = 10 };
         Change(box);
-        Console.WriteLine(box.Value);  // 11 — змінено поле
+        Console.WriteLine(box.Value);  // 11
     }
 
-    internal void DoRefExample2()
+    internal static void DoRefExample2()
     {
-        void Replace(ref Box b) { b = new Box { Value = 100 }; }
+        static void Replace(ref Box b) { b = new Box { Value = 100 }; }
 
         Box box = new() { Value = 10 };
         Replace(ref box);
-        Console.WriteLine(box.Value);  // 100 — посилання змінено
-
+        Console.WriteLine(box.Value);  // 100
     }
 
-    internal void DoRefExample3()
+    internal static void DoRefExample3()
     {
-        void Change(Box b) { b = new() { Value = 123 }; }
+        static void Change(Box b) { b = new() { Value = 123 }; }
 
         Box box = new() { Value = 10 };
         Change(box);
-        Console.WriteLine(box.Value);  // 10 — бо змінено лише локальну копію   
+        Console.WriteLine(box.Value);  // 10
     }
 }
